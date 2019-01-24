@@ -7,21 +7,12 @@ Will handle the position and viewing on the screen of a card class.s
 Changelog:
     24/01/2019:
         * Added the CardView class
-        * start writing static initalizer to load all images into memory.
-
-    # TEMPURA = 0
-    #SASHIMI = 1
-    #MAKI_ROLLS = 2
-    #NIGIRI = 3
-    #EGG_NIGIRI = 4
-    #Pudding = 5
-    #Wasabi = 6
-    #Chopsticks = 7
+        * wrote static initializer to load all images into memory.
 """
 
-import os, copy
-import source.model.card as card
+import os
 from pygame import Surface, image
+import source.model.card as card
 
 
 class CardView:
@@ -37,8 +28,25 @@ class CardView:
         """ Initializes the IMAGE_DICT by loading the images according to cardType"""
 
         base_path = os.path.join("../", "assets", "images")  # Path of images
+        name_images = ["Tempura.png","Sashimi.png","Pudding.jpg", "Wasabi.jpg","Chopsticks.jpg"]
+
+        # Lazy coding loop to load all images in dict
+        for type_iterator in card.CardType:
+
+            image_name = ""
+            if type_iterator == card.CardType.MAKI_ROLLS:
+                maki_images = ["Maki_Roll1.png", "Maki_Roll2.png", "Maki_Roll3.png"]
         CardView.IMAGE_DICT[card.CardType.TEMPURA] = image.load(os.path.join(base_path, "Tempura.png"))
         # TODO: Add all other images after this works
+
+        # TEMPURA = 0
+        # SASHIMI = 1
+        # MAKI_ROLLS = 2
+        # NIGIRI = 3
+        # EGG_NIGIRI = 4
+        # Pudding = 5
+        # Wasabi = 6
+        # Chopsticks = 7
 
     # init block
     # ==================================================================================================================

@@ -50,16 +50,16 @@ class Card:
     class of Card.
     """
 
-    _TYPE: CardType
-
-    def __init_(self, card_type: CardType):
+    def __init__(self, card_type: CardType):
         """
         A card is always of a certain type
         :arg card_type = a CardType that is the type of the card instance
         """
 
+        # Assertion block
         assert type(card_type) == CardType, "CardType should be {0}, not {1}".format(CardType, type(card_type))
 
+        # Members
         self._TYPE = card_type
 
     @property

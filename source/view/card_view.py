@@ -21,7 +21,7 @@ Changelog:
 
 import os, copy
 import source.model.card as card
-from pygame import Surface
+from pygame import Surface, image
 
 
 class CardView:
@@ -37,7 +37,7 @@ class CardView:
         """ Initializes the IMAGE_DICT by loading the images according to cardType"""
 
         base_path = os.path.join("../", "assets", "images")  # Path of images
-        CardView.IMAGE_DICT[card.CardType.TEMPURA] = os.path.join(base_path, "Tempura.png")
+        CardView.IMAGE_DICT[card.CardType.TEMPURA] = image.load(os.path.join(base_path, "Tempura.png"))
         # TODO: Add all other images after this works
 
     # init block

@@ -28,25 +28,29 @@ class CardView:
         """ Initializes the IMAGE_DICT by loading the images according to cardType"""
 
         base_path = os.path.join("../", "assets", "images")  # Path of images
-        name_images = ["Tempura.png","Sashimi.png","Pudding.jpg", "Wasabi.jpg","Chopsticks.jpg"]
+
+        name_images = [
+            (card.CardType.TEMPURA, "Tempura.png"),
+            (card.CardType.MAKI_ROLLS, ["Maki_Roll1.png", "Maki_Roll2.png", "Maki_Roll3.png"]),
+            (card.CardType.NIGIRI, ["Maki_Roll1.png", "Maki_Roll2.png", "Maki_Roll3.png"]),
+            (card.CardType.Pudding, "Pudding.jpg"),
+            (card.CardType.Wasabi, "Wasabi.jpg"),
+            (card.CardType.Chopsticks, "Chopsticks.jpg")
+        ]
 
         # Lazy coding loop to load all images in dict
-        for type_iterator in card.CardType:
+        for type_enum, value in name_images:
 
-            image_name = ""
-            if type_iterator == card.CardType.MAKI_ROLLS:
-                maki_images = ["Maki_Roll1.png", "Maki_Roll2.png", "Maki_Roll3.png"]
-        CardView.IMAGE_DICT[card.CardType.TEMPURA] = image.load(os.path.join(base_path, "Tempura.png"))
-        # TODO: Add all other images after this works
+            if type_enum == card.CardType.MAKI_ROLLS or type_enum == card.CardType.NIGIRI:
 
-        # TEMPURA = 0
-        # SASHIMI = 1
-        # MAKI_ROLLS = 2
-        # NIGIRI = 3
-        # EGG_NIGIRI = 4
-        # Pudding = 5
-        # Wasabi = 6
-        # Chopsticks = 7
+                # we make buckets for multi valued cards, (store it as a python list)
+                CardView.IMAGE_DICT[type_enum] = list()
+                for name in value:
+                    CardView.IMAGE_DICT[type_enum].append(image.load(os.path.join(base_path, name)))
+
+            else:
+                CardView.IMAGE_DICT[type_enum] = image.load(os.path.join(base_path, value))
+
 
     # init block
     # ==================================================================================================================
@@ -58,9 +62,9 @@ class CardView:
         """
 
         # Assertion block
-        assert type(parent_surface) == Surface, "Card parent surface should be {0} but is {1}"\
+        assert type(parent_surface) == Surface, "Card parent surface should be {0} but is {1}" \
             .format(Surface, type(parent_surface))
-        assert type(model_card) == card.Card, "Model of CardView should be of the type {0} and not {1}"\
+        assert type(model_card) == card.Card, "Model of CardView should be of the type {0} and not {1}" \
             .format(card.Card, type(model_card))
 
         # Members

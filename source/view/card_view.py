@@ -9,18 +9,20 @@ Changelog:
         * Added the CardView class
         * wrote static initializer to load all images into memory.
 """
-from typing import Any
 
-import os, copy
+import copy
+import os
+
 from pygame import Surface, image
 import source.model.card as card
+import source.view.entity_view as entity
 
 
-class CardView:
+class CardView(entity.EntityView):
     """ View for a card"""
+
+    # Type suggestions of class members
     _model: card.Card
-    _parent_surface: Surface
-    _surface: Surface
 
     # Class static block
     # ==================================================================================================================
@@ -64,6 +66,8 @@ class CardView:
         :param model_card: The model this cardView belongs to.
         """
 
+        super().__init__(parent_surface)
+
         # Assertion block
         assert type(parent_surface) == Surface, "Card parent surface should be {0} but is {1}" \
             .format(Surface, type(parent_surface))
@@ -73,6 +77,9 @@ class CardView:
         # Members
         self._parent_surface = parent_surface
         self._model = model_card
+        self._initialize_surface()
+
+    def _initialize_surface(self):
         self._surface = copy.copy(CardView.IMAGE_DICT[self._model.type])
 
     # Properties
@@ -85,8 +92,8 @@ class CardView:
     # Public functions
     # ==================================================================================================================
 
-    def draw(self):
-        self._parent_surface.blit(self._surface, 0, 0)
+    def draw(self, x, y):
+        self._parent_surface.blit(self._surface, x, y)
 
 
 CardView.init_card_view()

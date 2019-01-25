@@ -1,4 +1,4 @@
-from abc import ABC
+from abc import ABC, abstractmethod
 
 from pygame import Surface
 
@@ -18,6 +18,14 @@ class EntityView(ABC):
 
         self._parent_surface = parent_surface
         self._surface = None
+
+    @abstractmethod
+    def _initialize_surface(self):
+        """
+        This function forces child classes to initialize the surface.
+        Here so i don't forget to initalize the own surface in laer classes
+        """
+        pass
 
     def draw(self, x, y):
         """

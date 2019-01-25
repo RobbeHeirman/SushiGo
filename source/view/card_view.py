@@ -75,7 +75,6 @@ class CardView(entity.EntityView):
             .format(card.Card, type(model_card))
 
         # Members
-        self._parent_surface = parent_surface
         self._model = model_card
         self._initialize_surface()
 

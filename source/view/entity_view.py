@@ -23,7 +23,7 @@ class EntityView(ABC):
     def _initialize_surface(self):
         """
         This function forces child classes to initialize the surface.
-        Here so i don't forget to initalize the own surface in laer classes
+        Here so i don't forget to initialize the own surface in later classes
         """
         pass
 

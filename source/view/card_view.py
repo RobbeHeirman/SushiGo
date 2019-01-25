@@ -9,6 +9,7 @@ Changelog:
         * Added the CardView class
         * wrote static initializer to load all images into memory.
 """
+from typing import Any
 
 import os, copy
 from pygame import Surface, image
@@ -17,6 +18,9 @@ import source.model.card as card
 
 class CardView:
     """ View for a card"""
+    _model: card.Card
+    _parent_surface: Surface
+    _surface: Surface
 
     # Class static block
     # ==================================================================================================================
@@ -82,7 +86,7 @@ class CardView:
     # ==================================================================================================================
 
     def draw(self):
-        self._parent_surface
+        self._parent_surface.
 
 
 CardView.init_card_view()

@@ -38,10 +38,9 @@ class CardType(enum.Enum):
     SASHIMI = 1
     MAKI_ROLLS = 2
     NIGIRI = 3
-    EGG_NIGIRI = 4
-    Pudding = 5
-    Wasabi = 6
-    Chopsticks = 7
+    Pudding = 4
+    Wasabi = 5
+    Chopsticks = 6
 
 
 class Card:
@@ -74,8 +73,6 @@ class ValuedCard(Card):
     different values. They are handled the same when scores are calculated but some are worth more/less
     based on their value (see game rules).
     """
-
-    _VALUE: int
 
     def __init__(self, card_type: CardType, value: int):
         """Constructor"""

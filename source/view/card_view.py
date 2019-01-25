@@ -73,20 +73,20 @@ class CardView:
         # Members
         self._parent_surface = parent_surface
         self._model = model_card
-        self._surface = copy.deepcopy(CardView.IMAGE_DICT[self._model.type])
+        self._surface = copy.copy(CardView.IMAGE_DICT[self._model.type])
 
     # Properties
     # ==================================================================================================================
 
     @property
-    def surface(self):
+    def surface(self) -> Surface:
         return self._surface
 
     # Public functions
     # ==================================================================================================================
 
     def draw(self):
-        self._parent_surface.
+        self._parent_surface.blit(self._surface, 0, 0)
 
 
 CardView.init_card_view()

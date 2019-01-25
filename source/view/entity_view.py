@@ -25,7 +25,7 @@ class EntityView(ABC):
         This function forces child classes to initialize the surface.
         Here so i don't forget to initialize the own surface in later classes
         """
-        pass
+        print("I shouldn't get called!")
 
     def draw(self, x, y):
         """

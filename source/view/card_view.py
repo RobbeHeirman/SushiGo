@@ -66,7 +66,7 @@ class CardView:
         # Members
         self._parent_surface = parent_surface
         self._model = model_card
-        self._surface = CardView.IMAGE_DICT[self._model.type]
+        self._surface = CardView.IMAGE_DICT[self._model.type] #TODO should be copied!
 
     # Properties
     # ==================================================================================================================

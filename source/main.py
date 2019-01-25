@@ -7,12 +7,12 @@ Main python module for SushiGo!
 Contains the GameLoop and event handler.
 """
 import os
-
-import pygame
 import sys
 
+import pygame
+
 import source.model.card as m_card
-import source.view.card_view as v_card
+from source.model.booster_pack import BoosterPack
 from source.view.hand_view import HandView
 
 SCREEN_WIDTH = 1920
@@ -35,7 +35,10 @@ def main():
     # model_card = m_card.Card(m_card.CardType.TEMPURA)
     # view_card = v_card.CardView(screen, model_card)
 
-    hand_view = HandView(screen, SCREEN_WIDTH, SCREEN_HEIGHT / 5)
+    card1 = m_card.Card(m_card.CardType.TEMPURA)
+    card2 = m_card.Card(m_card.CardType.Pudding)
+    b_pack = BoosterPack([card1, card2])
+    hand_view = HandView(screen, SCREEN_WIDTH, SCREEN_HEIGHT / 5, b_pack)
     # Game loop
     while True:
 

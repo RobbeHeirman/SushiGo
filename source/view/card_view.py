@@ -10,8 +10,8 @@ Changelog:
         * wrote static initializer to load all images into memory.
 """
 
-import copy
 import os
+import pygame
 
 from pygame import Surface, image
 import source.model.card as card
@@ -21,7 +21,8 @@ import source.view.entity_view as entity
 class CardView(entity.EntityView):
     """ View for a card"""
 
-    # Type suggestions of class members
+    _height: int
+    _width: int
     _model: card.Card
 
     # Class static block
@@ -60,7 +61,7 @@ class CardView(entity.EntityView):
     # init block
     # ==================================================================================================================
 
-    def __init__(self, parent_surface: Surface, model_card: card.Card):
+    def __init__(self, parent_surface: Surface, model_card: card.Card, width: int, height: int):
         """
         :param parent_surface: Surface the card will be drawn on.
         :param model_card: The model this cardView belongs to.
@@ -75,11 +76,14 @@ class CardView(entity.EntityView):
             .format(card.Card, type(model_card))
 
         # Members
+        self._width = width
+        self._height = height
         self._model = model_card
         self._initialize_surface()
 
     def _initialize_surface(self):
-        self._surface = copy.copy(CardView.IMAGE_DICT[self._model.type])
+        self._surface = pygame.transform.scale(
+            CardView.IMAGE_DICT[self._model.type], (round(self._width), round(self._height)))
 
     # Properties
     # ==================================================================================================================
@@ -88,11 +92,16 @@ class CardView(entity.EntityView):
     def surface(self) -> Surface:
         return self._surface
 
+    @property
+    def width(self) -> int:
+        return self._width
+
+    @property
+    def height(self) -> int:
+        return self._height
+
     # Public functions
     # ==================================================================================================================
-
-    def draw(self, x, y):
-        self._parent_surface.blit(self._surface, x, y)
 
 
 CardView.init_card_view()

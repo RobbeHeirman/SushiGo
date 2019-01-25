@@ -10,7 +10,7 @@ Changelog:
         * wrote static initializer to load all images into memory.
 """
 
-import os
+import os, copy
 from pygame import Surface, image
 import source.model.card as card
 
@@ -51,7 +51,6 @@ class CardView:
             else:
                 CardView.IMAGE_DICT[type_enum] = image.load(os.path.join(base_path, value))
 
-
     # init block
     # ==================================================================================================================
 
@@ -70,7 +69,7 @@ class CardView:
         # Members
         self._parent_surface = parent_surface
         self._model = model_card
-        self._surface = CardView.IMAGE_DICT[self._model.type]
+        self._surface = copy.deepcopy(CardView.IMAGE_DICT[self._model.type])
 
     # Properties
     # ==================================================================================================================
@@ -78,6 +77,12 @@ class CardView:
     @property
     def surface(self):
         return self._surface
+
+    # Public functions
+    # ==================================================================================================================
+
+    def draw(self):
+        self._parent_surface
 
 
 CardView.init_card_view()

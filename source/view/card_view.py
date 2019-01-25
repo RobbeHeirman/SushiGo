@@ -23,7 +23,6 @@ class CardView(entity.EntityView):
 
     _height: int
     _width: int
-    _model: card.Card
 
     # Class static block
     # ==================================================================================================================
@@ -38,11 +37,13 @@ class CardView(entity.EntityView):
 
         name_images = [
             (card.CardType.TEMPURA, "Tempura.png"),
+            (card.CardType.SASHIMI, "Sashimi.png"),
+            (card.CardType.DUMPLING, "Dumpling.png"),
             (card.CardType.MAKI_ROLLS, ["Maki_Roll1.png", "Maki_Roll2.png", "Maki_Roll3.png"]),
             (card.CardType.NIGIRI, ["Maki_Roll1.png", "Maki_Roll2.png", "Maki_Roll3.png"]),
-            (card.CardType.Pudding, "Pudding.jpg"),
-            (card.CardType.Wasabi, "Wasabi.jpg"),
-            (card.CardType.Chopsticks, "Chopsticks.jpg")
+            (card.CardType.PUDDING, "Pudding.jpg"),
+            (card.CardType.WASABI, "Wasabi.jpg"),
+            (card.CardType.CHOPSTICKS, "Chopsticks.jpg")
         ]
 
         # Lazy coding loop to load all images in dict
@@ -72,8 +73,8 @@ class CardView(entity.EntityView):
         # Assertion block
         assert type(parent_surface) == Surface, "Card parent surface should be {0} but is {1}" \
             .format(Surface, type(parent_surface))
-        assert type(model_card) == card.Card, "Model of CardView should be of the type {0} and not {1}" \
-            .format(card.Card, type(model_card))
+        assert type(model_card) == card.Card or type(model_card) == card.ValuedCard, \
+            "Model of CardView should be of the type {0} and not {1}".format(card.Card, type(model_card))
 
         # Members
         self._width = width
@@ -82,8 +83,15 @@ class CardView(entity.EntityView):
         self._initialize_surface()
 
     def _initialize_surface(self):
-        self._surface = pygame.transform.scale(
-            CardView.IMAGE_DICT[self._model.type], (round(self._width), round(self._height)))
+        if self._model.type == card.CardType.MAKI_ROLLS or self._model.type == card.CardType.NIGIRI:
+            self._surface = pygame.transform.scale(
+                CardView.IMAGE_DICT[self._model.type][self._model.value],
+                (round(self._width), round(self._height))
+            )
+
+        else:
+            self._surface = pygame.transform.scale(
+                CardView.IMAGE_DICT[self._model.type], (round(self._width), round(self._height)))
 
     # Properties
     # ==================================================================================================================

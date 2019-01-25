@@ -1,3 +1,4 @@
+import pygame
 from abc import ABC, abstractmethod
 
 from pygame import Surface
@@ -38,5 +39,6 @@ class EntityView(ABC):
 
         assert self._surface is not None, "Child object has not defined surface, can't use default draw function of " \
                                           "entity "
-
+        assert type(self._surface) == pygame.Surface, "Surface should be of type {0} not {1}"\
+            .format(pygame.Surface, type(self._surface))
         self._parent_surface.blit(self._surface, (x, y))

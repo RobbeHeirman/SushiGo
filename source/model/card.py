@@ -36,11 +36,12 @@ class CardType(enum.Enum):
     """Enumerator to differentiate between CardTypes"""
     TEMPURA = 0
     SASHIMI = 1
-    MAKI_ROLLS = 2
-    NIGIRI = 3
-    Pudding = 4
-    Wasabi = 5
-    Chopsticks = 6
+    DUMPLING = 2
+    MAKI_ROLLS = 3
+    NIGIRI = 4
+    PUDDING = 5
+    WASABI = 6
+    CHOPSTICKS = 7
 
 
 class Card:

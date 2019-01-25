@@ -11,8 +11,7 @@ import sys
 
 import pygame
 
-import source.model.card as m_card
-from source.model.booster_pack import BoosterPack
+from source.model.deck import Deck
 from source.view.hand_view import HandView
 
 SCREEN_WIDTH = 1920
@@ -35,9 +34,8 @@ def main():
     # model_card = m_card.Card(m_card.CardType.TEMPURA)
     # view_card = v_card.CardView(screen, model_card)
 
-    card1 = m_card.Card(m_card.CardType.TEMPURA)
-    card2 = m_card.Card(m_card.CardType.Pudding)
-    b_pack = BoosterPack([card1, card2])
+    deck = Deck()
+    b_pack = deck.generate_booster(10)
     hand_view = HandView(screen, SCREEN_WIDTH, SCREEN_HEIGHT / 5, b_pack)
     # Game loop
     while True:

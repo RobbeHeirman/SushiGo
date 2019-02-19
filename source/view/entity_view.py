@@ -12,13 +12,20 @@ class EntityView(ABC):
     """
     _parent_surface: Surface
 
-    def __init__(self, parent_surface):
+    def __init__(self, parent_surface, pos, size):
         """
         :param parent_surface: The surface to draw on
+        :param pos is a tuple (x,y)
+        :param size is a tuple (width, height)
         """
 
         self._parent_surface = parent_surface
-        self._surface = None
+        self._pos = pos
+        self._size = (round(size[0]), round(size[1]))
+
+        print(self._size)
+        self._surface = pygame.Surface(self._size)
+        self._surface.fill((255, 255, 255))
 
     @abstractmethod
     def _initialize_surface(self):
@@ -28,7 +35,7 @@ class EntityView(ABC):
         """
         print("I shouldn't get called!")
 
-    def draw(self, x, y):
+    def draw(self):
         """
         Function to draw an entity on his parent surface, Default behaviour just draw surface at pos surface.
         Can be overridden in.
@@ -41,4 +48,6 @@ class EntityView(ABC):
                                           "entity "
         assert type(self._surface) == pygame.Surface, "Surface should be of type {0} not {1}"\
             .format(pygame.Surface, type(self._surface))
-        self._parent_surface.blit(self._surface, (x, y))
+        self._parent_surface.blit(self._surface, self._pos)
+
+

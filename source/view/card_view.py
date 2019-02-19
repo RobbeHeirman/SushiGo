@@ -62,13 +62,15 @@ class CardView(entity.EntityView):
     # init block
     # ==================================================================================================================
 
-    def __init__(self, parent_surface: Surface, model_card: card.Card, width: int, height: int):
+    def __init__(self, parent_surface: Surface, pos, size, model_card: card.Card):
         """
         :param parent_surface: Surface the card will be drawn on.
+        :param pos: position where the card should be drawn
+        :param size: size of the card.
         :param model_card: The model this cardView belongs to.
         """
-
-        super().__init__(parent_surface)
+        print(size)
+        super().__init__(parent_surface,pos, size)
 
         # Assertion block
         assert type(parent_surface) == Surface, "Card parent surface should be {0} but is {1}" \
@@ -77,21 +79,18 @@ class CardView(entity.EntityView):
             "Model of CardView should be of the type {0} and not {1}".format(card.Card, type(model_card))
 
         # Members
-        self._width = width
-        self._height = height
         self._model = model_card
         self._initialize_surface()
 
     def _initialize_surface(self):
         if self._model.type == card.CardType.MAKI_ROLLS or self._model.type == card.CardType.NIGIRI:
             self._surface = pygame.transform.scale(
-                CardView.IMAGE_DICT[self._model.type][self._model.value],
-                (round(self._width), round(self._height))
+                CardView.IMAGE_DICT[self._model.type][self._model.value], self._size
             )
 
         else:
             self._surface = pygame.transform.scale(
-                CardView.IMAGE_DICT[self._model.type], (round(self._width), round(self._height)))
+                CardView.IMAGE_DICT[self._model.type], self._size)
 
     # Properties
     # ==================================================================================================================
@@ -102,11 +101,11 @@ class CardView(entity.EntityView):
 
     @property
     def width(self) -> int:
-        return self._width
+        return self._size[0]
 
     @property
     def height(self) -> int:
-        return self._height
+        return self._size[1]
 
     # Public functions
     # ==================================================================================================================

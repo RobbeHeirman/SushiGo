@@ -19,28 +19,26 @@ class HandView(entity_view.EntityView):
 
     def _initialize_surface(self):
         # Creating an empty surface
-        self._surface = pygame.Surface((self._width, self._height))
+        self._surface = pygame.Surface(self._size)
         self._surface.fill((255, 255, 255))
 
-    def __init__(self, parent_surface, width, height, booster_pack: BoosterPack = None):
-        super().__init__(parent_surface)
+    def __init__(self, parent_surface, pos, size, booster_pack: BoosterPack = None):
+        super().__init__(parent_surface, pos, size)
 
-        self._width = width
-        self._height = height
         self._initialize_surface()
         self._booster_pack = booster_pack
 
-
-    def draw(self, x, y):
+    def draw(self):
 
         for index, card in enumerate(self._booster_pack):
-            card_width = self._width / 10
-            card_height = self._height
+            card_width = self._size[0] / 10
+            card_height = self._size[1]
 
-            card = CardView(self._surface, card, card_width, card_height)
-
-            card_x = index * card.width
+            card_x = index * card_width
             card_y = 0
-            card.draw(card_x, card_y)
 
-        super().draw(x, y)
+            card = CardView(self._surface, (card_x, card_y), (card_width, card_height), card)
+
+            card.draw()
+
+        super().draw()

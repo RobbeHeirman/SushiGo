@@ -69,7 +69,6 @@ class CardView(entity.EntityView):
         :param size: size of the card.
         :param model_card: The model this cardView belongs to.
         """
-        print(size)
         super().__init__(parent_surface,pos, size)
 
         # Assertion block

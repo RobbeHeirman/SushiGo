@@ -23,9 +23,11 @@ class EntityView(ABC):
         self._pos = pos
         self._size = (round(size[0]), round(size[1]))
 
-        print(self._size)
         self._surface = pygame.Surface(self._size)
         self._surface.fill((255, 255, 255))
+
+        self._rect = self._surface.get_rect()
+        self._rect.move_ip(self._pos[0], self._pos[1])
 
     @abstractmethod
     def _initialize_surface(self):

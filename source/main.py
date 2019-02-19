@@ -8,6 +8,7 @@ Contains the GameLoop and event handler.
 """
 import os
 import sys
+from typing import List
 
 import pygame
 
@@ -19,8 +20,13 @@ SCREEN_WIDTH = 700
 SCREEN_HEIGHT = 700
 
 
-def is_clicked(views: list()) -> EntityView:
-    pass
+def is_clicked(views: List[EntityView]) -> EntityView:
+    """
+    Returns the view that is clicked in the game
+    """
+
+    for view in views:
+        pass
 
 def main():
     """

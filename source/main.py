@@ -14,8 +14,8 @@ import pygame
 from source.model.deck import Deck
 from source.view.hand_view import HandView
 
-SCREEN_WIDTH = 1920
-SCREEN_HEIGHT = 1020
+SCREEN_WIDTH = 700
+SCREEN_HEIGHT = 700
 
 
 def main():

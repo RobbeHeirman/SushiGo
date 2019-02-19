@@ -30,17 +30,15 @@ class HandView(entity_view.EntityView):
         self._initialize_surface()
         self._booster_pack = booster_pack
 
-        self._card_views = list()
-        for card in self._booster_pack:
-            card_width = self._width / 10
-            card_height = self._height
-
-            card_view = CardView(self._surface, card, card_width, card_height)
-            self._card_views.append(card_view)
 
     def draw(self, x, y):
 
-        for index, card in enumerate(self._card_views):
+        for index, card in enumerate(self._booster_pack):
+            card_width = self._width / 10
+            card_height = self._height
+
+            card = CardView(self._surface, card, card_width, card_height)
+
             card_x = index * card.width
             card_y = 0
             card.draw(card_x, card_y)

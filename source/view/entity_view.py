@@ -37,6 +37,10 @@ class EntityView(ABC):
         """
         print("I shouldn't get called!")
 
+    @property
+    def rect(self):
+        return self._rect
+
     def draw(self):
         """
         Function to draw an entity on his parent surface, Default behaviour just draw surface at pos surface.
@@ -51,5 +55,9 @@ class EntityView(ABC):
         assert type(self._surface) == pygame.Surface, "Surface should be of type {0} not {1}"\
             .format(pygame.Surface, type(self._surface))
         self._parent_surface.blit(self._surface, self._pos)
+
+    def is_clicked(self):
+        return self
+
 
 

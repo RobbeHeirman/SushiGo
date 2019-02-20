@@ -26,7 +26,8 @@ def is_clicked(views: List[EntityView]) -> EntityView:
     """
 
     for view in views:
-        pass
+        rct = view.rect
+
 
 def main():
     """

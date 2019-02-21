@@ -1,3 +1,5 @@
+from typing import Tuple
+
 import pygame
 from abc import ABC, abstractmethod
 
@@ -45,19 +47,29 @@ class EntityView(ABC):
         """
         Function to draw an entity on his parent surface, Default behaviour just draw surface at pos surface.
         Can be overridden in.
-        :param x:
-        :param y:
-        :return:
         """
 
         assert self._surface is not None, "Child object has not defined surface, can't use default draw function of " \
                                           "entity "
-        assert type(self._surface) == pygame.Surface, "Surface should be of type {0} not {1}"\
+        assert type(self._surface) == pygame.Surface, "Surface should be of type {0} not {1}" \
             .format(pygame.Surface, type(self._surface))
         self._parent_surface.blit(self._surface, self._pos)
 
-    def is_clicked(self):
+    def clicked(self):
+        """
+        Function should be called when there is clicked on this view.
+        Child classes should implement this function.
+        This function handle's a click on a button.
+        :return:
+        """
         return self
 
+    def _transform(self, pos: Tuple[int, int]) -> Tuple[int, int]:
+        """
+        Transforms a previous coordinate so that the origin of the new coordinates
+        are this surface
+        :param pos: old coordinates
+        :return: new coordinates
+        """
 
-
+        return pos[0] - self._pos[0], pos[1] - self._pos[1]

@@ -106,6 +106,10 @@ class CardView(entity.EntityView):
     def height(self) -> int:
         return self._size[1]
 
+    @property
+    def model(self) -> card:
+        return self._model
+
     # Public functions
     # ==================================================================================================================
 

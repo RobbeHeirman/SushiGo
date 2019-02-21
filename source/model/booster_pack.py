@@ -18,3 +18,13 @@ class BoosterPack:
 
     def __getitem__(self, item):
         return self._card_container
+
+    def pick_card(self, card: Card) -> Card:
+        """
+        Removes a selected card from the booster pack
+        :param card: the model of the Card that needs to be selected.
+        :return: The picked card.
+        """
+
+        self._card_container.remove(card)
+        return card

@@ -16,6 +16,7 @@ from source.model.deck import Deck
 from source.model.player import Player
 from source.view.entity_view import EntityView
 from source.view.hand_view import HandView
+from source.view.picked_cards_view import PickedCardsView
 
 SCREEN_WIDTH = 700
 SCREEN_HEIGHT = 700
@@ -54,6 +55,8 @@ def main():
     player.booster_pack = b_pack
 
     hand_view = HandView(screen, (0, SCREEN_HEIGHT - SCREEN_HEIGHT / 5), (SCREEN_WIDTH, SCREEN_HEIGHT / 5), player)
+    pick_crds = PickedCardsView(screen, (0, 0), (SCREEN_WIDTH, SCREEN_HEIGHT / 5), player, 0)
+    pick_crds2 = PickedCardsView(screen, (0, 0), (SCREEN_WIDTH, SCREEN_HEIGHT / 5), player, 180)
     # Game loop
     while True:
 
@@ -62,9 +65,10 @@ def main():
                 sys.exit()
 
             elif event.type == pygame.MOUSEBUTTONUP:
-                is_clicked([hand_view], pygame.mouse.get_pos())
+                is_clicked([hand_view, pick_crds, pick_crds2], pygame.mouse.get_pos())
         screen.fill((0, 0, 0))
         hand_view.draw()
+        pick_crds.draw()
         pygame.display.flip()
 
 

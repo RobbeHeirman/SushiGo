@@ -69,6 +69,7 @@ def main():
         screen.fill((0, 0, 0))
         hand_view.draw()
         pick_crds.draw()
+        pick_crds2.draw()
         pygame.display.flip()
 
 

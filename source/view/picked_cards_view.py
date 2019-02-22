@@ -43,7 +43,7 @@ class PickedCardsView(EntityView):
         print(y_w)
         # Center of screen
         x_c = screen_width / 2
-        y_c = screen_height / 2
+        y_c = screen_height / 2 - screen_height / 10
 
         x_surface = round(x_c + (x_w * cos(radians(self._rotation - 90))))
         y_surface = round(y_c - (y_w * sin(radians(self._rotation - 90))))
